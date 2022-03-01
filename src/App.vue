@@ -1,9 +1,16 @@
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-core';
+import BoardComponent from './components/Board/BoardComponent.vue';
+import TaskComponent from './components/Board/Task/TaskComponent.vue'
+
+export default defineComponent({
+  components: { TaskComponent, BoardComponent }
+})
 </script>
 
 <template>
-  <div>
-    <h1 class="text-red-700">Hello</h1>
+  <div class="min-h-full">
+    <BoardComponent />
   </div>
 </template>
 
