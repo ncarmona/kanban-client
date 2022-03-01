@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TaskComponent class="mb-3" v-for="task in tasks" :key="task.id"/>
+    <TaskComponent class="mb-3" v-for="task in tasks" :task="task" :key="task.id"/>
   </div>
 </template>
 
