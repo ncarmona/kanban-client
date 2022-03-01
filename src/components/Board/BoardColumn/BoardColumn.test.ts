@@ -2,8 +2,39 @@ import { DOMWrapper, mount } from '@vue/test-utils'
 import { IBoardColumn } from 'domain/interfaces/IBoardColumn'
 import BoardColumnComponent from './BoardColumnComponent.vue'
 import TaskComponent from '../Task/TaskComponent.vue'
+import { ITag } from 'domain/interfaces/ITag'
 
 describe("Board column", () => {
+    const tag1: ITag = {
+      id: "1",
+      name: "tag1",
+      color: "bg-orange-500",
+      board: "1",
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      deleted: false,
+      disabled: false
+    }
+    const tag2: ITag = {
+      id: "2",
+      name: "tag2",
+      color: "bg-orange-500",
+      board: "1",
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      deleted: false,
+      disabled: false
+    }
+    const tag3: ITag = {
+      id: "1",
+      name: "tag3",
+      color: "bg-orange-500",
+      board: "1",
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      deleted: false,
+      disabled: false
+    }
   const columnWithTasks: IBoardColumn = {
     name: "todo",
     default: true,
@@ -18,7 +49,7 @@ describe("Board column", () => {
       title: "Task1",
       description: "Task 1 description",
       author: "noel",
-      tags: ["tag2", "tag3"],
+      tags: [tag2, tag3],
       backlog: false,
       deleted: false,
       disabled: false,
@@ -30,7 +61,7 @@ describe("Board column", () => {
       title: "Task1",
       description: "Task 2 description",
       author: "noel",
-      tags: ["tag1", "tag2"],
+      tags: [tag1, tag2],
       backlog: false,
       deleted: false,
       disabled: false,
@@ -42,7 +73,7 @@ describe("Board column", () => {
       title: "Task3",
       description: "Task 3 description",
       author: "noel",
-      tags: ["tag1", "tag2"],
+      tags: [tag1, tag2],
       backlog: false,
       deleted: false,
       disabled: false,
