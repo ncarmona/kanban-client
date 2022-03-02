@@ -15,7 +15,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const style = computed(() => "rounded text-xs text-center p " + props.tag.color)
+    const style = computed(() => "rounded text-xs text-center p-1 ml-2 " + props.tag.color)
 
     return { ...toRefs(props), style}
   }
