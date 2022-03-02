@@ -10,6 +10,7 @@
     "test": "jest src"
   },
   "dependencies": {
+    "@heroicons/vue": "^1.0.5",
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3",
