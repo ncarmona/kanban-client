@@ -9,7 +9,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="h-screen pt-20">
+  <div class="h-screen pt-20 bg-gray-50">
     <BoardComponent />
   </div>
 </template>
