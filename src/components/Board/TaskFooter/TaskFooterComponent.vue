@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-row-reverse">
+  <div>
     <button @click="toggleContent">
       <ToggleTagsTaskComponent class="cursor-pointer mr-2" :icon="toggleIcon" />
     </button>
-    <div class="flex flex-grow">
+    <div class="flex flex-grow pt-3 pb-3">
       <TaskTagList v-if="tagsVisible" :tags="tags" />
       <TaskOptions v-else />
     </div>
