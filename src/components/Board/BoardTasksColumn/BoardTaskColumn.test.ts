@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { ITask } from 'domain/interfaces/ITask'
 import BoardTasksColumnComponent from './BoardTasksColumnComponent.vue'
-import TaskComponent from '../Task/TaskComponent.vue'
+import TaskComponent from '../../Task/Task/TaskComponent.vue'
 import { ITag } from 'domain/interfaces/ITag'
 
 describe("Board task column", () => {

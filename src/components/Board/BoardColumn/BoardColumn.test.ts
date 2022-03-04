@@ -1,7 +1,7 @@
 import { DOMWrapper, mount } from '@vue/test-utils'
 import { IBoardColumn } from 'domain/interfaces/IBoardColumn'
 import BoardColumnComponent from './BoardColumnComponent.vue'
-import TaskComponent from '../Task/TaskComponent.vue'
+import TaskComponent from '../../Task/Task/TaskComponent.vue'
 import { ITag } from 'domain/interfaces/ITag'
 
 describe("Board column", () => {
