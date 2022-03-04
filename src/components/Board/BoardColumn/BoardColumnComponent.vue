@@ -1,7 +1,7 @@
 <template>
-  <div class="border border-black w-3/12 p-2 rounded">
-    <BoardTitleComponent :columnTitle="column.name" />
-    <div v-if="haveTasks">
+  <div class="border bg-gray-200 w-3/12 p-2 shadow-md rounded">
+    <BoardTitleComponent class="flex justify-center" :columnTitle="column.name" />
+    <div v-if="haveTasks" class="mt-5">
       <BoardTaskColumnComponent class="mt-4" :tasks="column.tasks" />
     </div>
     <div v-else>
