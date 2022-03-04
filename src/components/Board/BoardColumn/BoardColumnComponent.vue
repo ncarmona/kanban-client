@@ -12,13 +12,12 @@
 
 <script lang="ts">
 import { computed, defineComponent, toRefs } from 'vue'
-import TaskComponent from '../Task/TaskComponent.vue'
 import BoardTitleComponent from '../BoardColumnTitle/BoardColumnTitleComponent.vue'
 import { IBoardColumn } from 'domain/interfaces/IBoardColumn'
 import BoardTaskColumnComponent from '../BoardTasksColumn/BoardTasksColumnComponent.vue'
 
 export default defineComponent({
-  components: { BoardTitleComponent, TaskComponent, BoardTaskColumnComponent },
+  components: { BoardTitleComponent, BoardTaskColumnComponent },
   props: {
     column: {
       required: true,

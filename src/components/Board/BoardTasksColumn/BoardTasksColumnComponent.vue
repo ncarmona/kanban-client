@@ -5,7 +5,7 @@
 <script lang="ts">
 import { ITask } from 'domain/interfaces/ITask'
 import { defineComponent, toRefs } from 'vue'
-import TaskComponent from '../Task/TaskComponent.vue'
+import TaskComponent from '../../Task/Task/TaskComponent.vue'
 
 export default defineComponent({
   components: { TaskComponent },
