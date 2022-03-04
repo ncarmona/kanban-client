@@ -4,7 +4,7 @@
     <div v-if="haveTasks" class="mt-5">
       <BoardTaskColumnComponent class="mt-4" :tasks="column.tasks" />
     </div>
-    <div v-else>
+    <div class="flex justify-center" v-else>
       <span>No tasks</span>
     </div>
   </div>
