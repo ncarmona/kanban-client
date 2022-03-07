@@ -1,8 +1,8 @@
 <template>
   <div class="flex ml-1">
-    <BookOpenIcon class="h-6 mr-2"/>
-    <PencilAltIcon class="h-6 mr-2"/>
-    <TrashIcon class="h-6 mr-2"/>
+    <BookOpenIcon class="h-6 mr-2 transition delay-75 duration-300 hover:text-violet-700 cursor-pointer"/>
+    <PencilAltIcon class="h-6 mr-2 transition delay-75 duration-300 hover:text-violet-700 cursor-pointer"/>
+    <TrashIcon class="h-6 mr-2 transition delay-75 duration-300 hover:text-violet-700 cursor-pointer"/>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <Component :is="icon" class="h-5"/>
+  <Component :is="icon" class="transition delay-75 duration-300 hover:text-violet-700 h-5"/>
 </template>
 
 <script lang="ts">
