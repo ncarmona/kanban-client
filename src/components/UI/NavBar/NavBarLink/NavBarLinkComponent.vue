@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex transition delay-75 duration-300 hover:bg-violet-500">
     <Component class="h-6" :is="icon" />
     <span class="ml-2">{{text}}</span>
   </div>
