@@ -1,7 +1,7 @@
 <template>
   <div class="text-white absolute w-full">
     <NavBarToggler class="md:hidden p-3" @click="toggler"/>
-    <div ref="navBar" class="md:flex md:mt-0 md:pb-0 mt-5 pb-3 hidden">
+    <div ref="navBar" class="md:flex md:mt-0 md:pb-0 mt-5 pb-3 hidden md:pl-10 md:pr-10">
       <div class="md:flex md:justify-start md:grow">
         <NavBarGroup :items="navBarItems.left" />
       </div>
