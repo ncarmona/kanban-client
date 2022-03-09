@@ -1,11 +1,11 @@
 <template>
-  <div class="flex transition delay-75 duration-300 hover:bg-violet-500 flex relative flex-col" @click="toggleSubmenu">
+  <div class="flex transition relative flex-col" @click="toggleSubmenu">
     <div class="flex flex-row">
       <NavBarLink :text="text" :icon="icon" />
       <Component :is="chevronIcon" class="chevron h-5"/>
     </div>
-    <div class="submenu mt-2 md:pl-0 md:flex md:flex-col pl-5" v-show="menuVisible">
-      <div class="md:bg-white md:text-gray-700 p-3" v-for="link in subLinks" :key="link.text">
+    <div class="submenu mt-2 md:pl-0 md:flex md:flex-col pl-5 delay-75 duration-300 md:bg-white md:rounded md:shadow-md" v-show="menuVisible">
+      <div class="md:text-gray-700 p-3 hover:bg-violet-700 hover:text-white" v-for="link in subLinks" :key="link.text">
         <span class="submenu-item">{{link.text}}</span>
       </div>
     </div>
