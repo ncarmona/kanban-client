@@ -1,7 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
-import BoardView from './views/BoardView.vue'
 
 export const routes: RouteRecordRaw[] = [{
   path: '/',
-  component: BoardView
+  component: import(/* webpackChunkName: "board" */ './views/BoardView.vue')
 }]
