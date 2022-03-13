@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-items-center">
-    <BoardColumnComponent class="ml-14" v-for="column in board.columns" :column="column" :key="column.id"/>
+    <BoardColumnComponent class="ml-14" v-for="column in board.columns" :column="column" :key="column.name"/>
   </div>
 </template>
 <script lang="ts">
