@@ -1,5 +1,7 @@
 <template>
-  <TaskComponent class="mb-3" v-for="task in tasks" :task="task" :key="task.id"/>
+  <div>
+    <TaskComponent class="mb-3" v-for="task in tasks" :task="task" :key="task.id"/>
+  </div>
 </template>
 
 <script lang="ts">
