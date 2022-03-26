@@ -1,12 +1,8 @@
 <template>
-  <div class="border bg-gray-200 w-3/12 p-2 shadow-md rounded">
+  <div class="border bg-gray-200 p-2 shadow-md rounded">
     <BoardTitleComponent class="flex justify-center" :columnTitle="column.name" />
-    <div v-if="haveTasks" class="mt-5">
-      <BoardTaskColumnComponent class="mt-4" :tasks="column.tasks" />
-    </div>
-    <div class="flex justify-center mt-5" v-else>
-      <span>No tasks</span>
-    </div>
+    <BoardTaskColumnComponent v-if="haveTasks" class="mt-4" :tasks="column.tasks" />
+    <EmptyColumnComponent v-else/>
   </div>
 </template>
 
@@ -15,9 +11,10 @@ import { computed, defineComponent, toRefs } from 'vue'
 import BoardTitleComponent from '../BoardColumnTitle/BoardColumnTitleComponent.vue'
 import { IBoardColumn } from 'domain/interfaces/IBoardColumn'
 import BoardTaskColumnComponent from '../BoardTasksColumn/BoardTasksColumnComponent.vue'
+import EmptyColumnComponent from '../EmptyColumn/EmptyColumnComponent.vue'
 
 export default defineComponent({
-  components: { BoardTitleComponent, BoardTaskColumnComponent },
+  components: { BoardTitleComponent, BoardTaskColumnComponent, EmptyColumnComponent },
   props: {
     column: {
       required: true,
