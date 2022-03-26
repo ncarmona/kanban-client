@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen bg-gray-50">
     <NavBarComponent class="bg-violet-700 shadow-xl" :navBarItems="menuItems"/>
-    <div class="pt-20">
+    <div class="pt-20 overflow-x-scroll">
       <slot/>
     </div>
   </div>
