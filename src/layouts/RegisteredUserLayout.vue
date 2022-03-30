@@ -16,7 +16,6 @@ import { ref, Ref, toRefs } from 'vue'
 import { INavBarSubMenu } from 'components/UI/NavBar/interfaces/NavBarSubMenu'
 import { Store, useStore } from 'vuex'
 import { INavBarSubLink } from 'components/UI/NavBar/interfaces/NavBarSubLink'
-import { RouteLocationRaw } from 'vue-router'
 
 export default defineComponent({
   components: {  NavBarComponent },
