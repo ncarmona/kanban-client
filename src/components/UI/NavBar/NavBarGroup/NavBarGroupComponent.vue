@@ -1,7 +1,7 @@
 <template>
   <div v-for="item in items" :key="item.text">
-    <NavBarLink class="p-3" v-if="isLink(item.type)" :text="item.text" :icon="item.icon" />
-    <NavBarSubMenu class="p-3 delay-75 duration-300 hover:bg-violet-500" v-if="isSubMenu(item.type)" :text="item.text" :icon="item.icon" :subLinks="item.subLinks" />
+    <NavBarLink class="p-3" v-if="isLink(item.type)" :url="item" />
+    <NavBarSubMenu class="p-3 delay-75 duration-300 hover:bg-violet-500" v-if="isSubMenu(item.type)" :menu="item" />
   </div>
 </template>
 

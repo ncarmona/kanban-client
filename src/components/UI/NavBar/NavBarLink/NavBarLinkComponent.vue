@@ -1,26 +1,32 @@
 <template>
-  <div class="flex transition delay-75 duration-300 hover:bg-violet-500">
-    <Component class="h-6" :is="icon" />
-    <span class="ml-2">{{text}}</span>
-  </div>
+  <Component :is="linkTag" :a="url.link" :to="url.link" class="flex transition delay-75 duration-300 hover:bg-violet-500">
+    <Component class="h-6" :is="url.icon" />
+    <span class="ml-2">{{url.text}}</span>
+  </Component>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue'
+import { computed, defineComponent, toRefs } from 'vue'
+import { INavBarLink } from '../interfaces/NavBarLink'
 
 export default defineComponent({
   props: {
-    icon: {
+    url: {
       required: true,
-      type: Function
-    },
-    text: {
-      required: false,
-      type: String
+      type: Object as () => INavBarLink | String
     }
   },
   setup(props) {
-    return { ...toRefs(props) } 
+    const { url } = props
+    const isSubMenu = !!url.link
+    const linkTag = computed(() => {
+      const tags:any = {
+        'string': 'a',
+        'object': 'router-link'
+      }
+      return isSubMenu ? tags[typeof(url)] : 'span'
+    })
+    return { ...toRefs(props), linkTag } 
   }
 })
 </script>
