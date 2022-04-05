@@ -5,5 +5,5 @@ export interface INavBarLink {
   text: string,
   icon: RenderFunction,
   type: string
-  link: string | RouteLocationRaw
+  link?: string | RouteLocationRaw
 }
