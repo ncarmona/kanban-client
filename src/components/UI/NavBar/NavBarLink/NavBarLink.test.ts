@@ -1,28 +1,24 @@
 import { mount, VueWrapper } from '@vue/test-utils'
 import NavBarLinkComponent from './NavBarLinkComponent.vue'
 import { AcademicCapIcon } from '@heroicons/vue/outline'
+import { INavBarLink } from '../interfaces/NavBarLink'
 
 describe('NavBar link component', () => {
-  const iconText:string = 'IconText'
+  const text:string = 'IconText'
   const icon = AcademicCapIcon
+  const url: INavBarLink = {
+    icon, text, type:'link'
+  }
+  const wrapper: VueWrapper = mount(NavBarLinkComponent, {
+    props: { url }
+  })
 
-  const linkWithText: VueWrapper = mount(NavBarLinkComponent, {
-    props: { text: iconText, icon: icon }
-  })
-  const linkWithoutText: VueWrapper = mount(NavBarLinkComponent, {
-    props: { icon: icon }
-  })
-
-  it('Link with optional text', () => {
-    const textIcon:string = linkWithoutText.find('span').text()
-    expect(textIcon).toBe('')
-  })
-  it('Link with text', () => {
-    const textIcon:string = linkWithText.find('span').text()
-    expect(textIcon).toBe(iconText)
+  it('Text rendered', () => {
+    const textIcon:string = wrapper.find('span').text()
+    expect(textIcon).toBe(text)
   })
   it('Icon rendered', () => {
-    const iconExists:boolean = linkWithText.findComponent(icon).exists()
+    const iconExists:boolean = wrapper.findComponent(icon).exists()
     expect(iconExists).toBeTruthy()
   })
 })
