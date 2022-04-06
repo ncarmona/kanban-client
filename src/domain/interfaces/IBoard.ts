@@ -1,6 +1,7 @@
 import { IBoardColumn } from './IBoardColumn';
 import { IDomain } from './IDomain';
 import { ITag } from './ITag';
+import { ITask } from './ITask';
 
 export interface IBoard  extends IDomain {
   name: string,
@@ -9,4 +10,5 @@ export interface IBoard  extends IDomain {
   editors: string[],
   viewers: string[],
   tags: ITag[]
+  backlog: ITask[]
 }

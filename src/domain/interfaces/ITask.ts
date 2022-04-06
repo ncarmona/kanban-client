@@ -6,6 +6,5 @@ export interface ITask extends IDomain {
   description: string,
   column: string,
   author: string,
-  tags: ITag[],
-  backlog: boolean
+  tags: ITag[]
 }
