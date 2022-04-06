@@ -1,7 +1,7 @@
 <template>
-  <RegisteredUserLayout>
+  <BoardLayout>
     <BoardComponent :board="board"/>
-  </RegisteredUserLayout>
+  </BoardLayout>
 </template>
 
 <script lang="ts">
@@ -11,10 +11,10 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { Store, useStore } from 'vuex'
 import BoardComponent from '../components/Board/BoardComponent.vue'
-import RegisteredUserLayout from '../layouts/RegisteredUserLayout.vue'
+import BoardLayout from '../layouts/BoardLayout.vue'
 
 export default defineComponent({
-  components: { BoardComponent, RegisteredUserLayout },
+  components: { BoardComponent, BoardLayout },
   setup() {
     const store:Store<any> = useStore()
     const route = useRoute()
