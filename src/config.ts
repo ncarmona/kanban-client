@@ -1,4 +1,4 @@
-import { AdjustmentsIcon, ArchiveIcon, DocumentAddIcon, LogoutIcon, UserIcon } from '@heroicons/vue/solid'
+import { AdjustmentsIcon, ArchiveIcon, DocumentAddIcon, HomeIcon, LogoutIcon, UserIcon } from '@heroicons/vue/solid'
 import { INavBarLink } from 'components/UI/NavBar/interfaces/NavBarLink'
 import { RouteRecordRaw } from 'vue-router'
 
@@ -42,6 +42,14 @@ export const routes: RouteRecordRaw[] = [
 ]
 
 export const menuLinks = () => {
+  const home = (): INavBarLink => { 
+    return {
+      text: "Home", icon: HomeIcon, type: 'link', link: {
+        name: 'home'
+      }
+    } 
+  }
+
   const createTask = (board: string): INavBarLink => { 
     return {
       text: "Create task", icon: DocumentAddIcon, type: 'link', link: {
@@ -84,5 +92,5 @@ export const menuLinks = () => {
       }
     } 
   }
-  return { createTask, backlog, boardConfiguration, logout, userSettings }
+  return { createTask, backlog, boardConfiguration, logout, userSettings, home }
 }
