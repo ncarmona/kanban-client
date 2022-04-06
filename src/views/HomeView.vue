@@ -1,9 +1,9 @@
 <template>
   <HomeLayout>
-    <h1>Home</h1>
+    <Header :headerNumber="1" text="Home" />
     <ul>
       <li v-for="board in boards" :key="board">
-        <router-link :to="boardLink(board)">{{board}}</router-link>
+        <router-link class="font-semibold" :to="boardLink(board)">{{board}}</router-link>
       </li>
     </ul>
   </HomeLayout>
@@ -14,9 +14,10 @@ import { computed, defineComponent } from 'vue'
 import HomeLayout from '../layouts/HomeLayout.vue'
 import { useStore } from 'vuex'
 import { RouteLocationRaw } from 'vue-router'
+import Header from '../components/UI/Header/HeaderComponent.vue'
 
 export default defineComponent({
-  components: { HomeLayout },
+  components: { HomeLayout, Header },
   setup() {
     const store = useStore()
     const boards = computed(():string[] => store.getters.getProfileBoards)
