@@ -21,7 +21,7 @@ export const routes: RouteRecordRaw[] = [
   {
     name: 'backlog',
     path: '/board/:board/backlog',
-    component: () => import(/* webpackChunkName: "backlog" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "backlog" */ './views/BacklogView.vue')
   },
   {
     name: 'board-configuration',
