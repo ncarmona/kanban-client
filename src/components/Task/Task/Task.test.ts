@@ -31,7 +31,6 @@ describe("Task component", () => {
       description: "Task 1 description",
       author: "noel",
       tags: [tag2, tag3],
-      backlog: false,
       deleted: false,
       disabled: false,
       modifiedAt: new Date(),
