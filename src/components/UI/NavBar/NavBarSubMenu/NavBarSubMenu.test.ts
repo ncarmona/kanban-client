@@ -1,4 +1,4 @@
-import { DOMWrapper, mount, VueWrapper, RouterLinkStub, shallowMount } from '@vue/test-utils'
+import { DOMWrapper, mount, shallowMount, VueWrapper } from '@vue/test-utils'
 import NavBarSubMenuComponent from './NavBarSubMenuComponent.vue'
 import { AcademicCapIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/solid'
 import { INavBarSubMenu } from '../interfaces/NavBarSubMenu'
@@ -18,11 +18,12 @@ describe('NavBarSubMenu component', () => {
     type: 'menu',
     subLinks
   }
+
   beforeEach(() => {
     wrapper = shallowMount(NavBarSubMenuComponent, {
       props: { menu },
-      stubs: {
-        RouterLink: RouterLinkStub
+      global: {
+        stubs: ['router-link', 'router-view']
       }
     })
   })
