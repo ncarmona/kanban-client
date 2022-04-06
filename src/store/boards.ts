@@ -150,7 +150,41 @@ export default {
         deleted: false,
         disabled: false,
         tasks: []
-      }]}
+      }],
+      backlog: [
+        {
+          id: "1",
+          title: "Backlog task",
+          description: "Task for the next sprint",
+          author: "noel",
+          tags: [{
+      id: "2",
+      name: "tag2",
+      color: "bg-orange-500",
+      board: "1",
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      deleted: false,
+      disabled: false
+    }, {
+      id: "1",
+      name: "tag3",
+      color: "bg-orange-500",
+      board: "1",
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      deleted: false,
+      disabled: false
+    }],
+          backlog: false,
+          deleted: false,
+          disabled: false,
+          modifiedAt: new Date(),
+          createdAt: new Date(),
+          column: "1"
+        }
+      ]
+    }
   ],
   mutations: {},
   actions: {},
