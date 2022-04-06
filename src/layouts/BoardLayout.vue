@@ -24,11 +24,11 @@ export default defineComponent({
   setup(props) {
     const store:Store<any> = useStore()
     const route = useRoute()
-    const { createTask, backlog, boardConfiguration, logout, userSettings } = menuLinks()
+    const { createTask, backlog, boardConfiguration, logout, userSettings, home } = menuLinks()
     const board:string = route.params.board.toString()
     const { name:username } = store.getters.getProfile
     const menuItems: Ref<INavBar> = ref({
-      left: [ createTask(board), backlog(board) ],
+      left: [ home(), createTask(board), backlog(board) ],
       right: [ boardConfiguration(board), userSettings(username), logout(username)]
     })
     const getProfileBoards = ():string[] => store.getters.getProfileBoards
