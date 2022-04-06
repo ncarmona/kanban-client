@@ -6,37 +6,37 @@ export const routes: RouteRecordRaw[] = [
   {
     name: 'home',
     path: '/',
-    component: () => import(/* webpackChunkName: "board" */ './views/HomeView.vue')
+    component: () => import(/* webpackChunkName: "home" */ './views/HomeView.vue')
   },
   {
     name: 'board',
     path: '/board/:board',
-    component: () => import(/* webpackChunkName: "home" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "board" */ './views/BoardView.vue')
   },
   {
     name: 'create-task',
     path: '/board/:board/create-task',
-    component: () => import(/* webpackChunkName: "board" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "create-task" */ './views/BoardView.vue')
   },
   {
     name: 'backlog',
     path: '/board/:board/backlog',
-    component: () => import(/* webpackChunkName: "board" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "backlog" */ './views/BoardView.vue')
   },
   {
     name: 'board-configuration',
     path: '/board/:board/config',
-    component: () => import(/* webpackChunkName: "board" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "board-configuration" */ './views/BoardView.vue')
   },
   {
     name: 'user-settings',
     path: '/user/:username/settings',
-    component: () => import(/* webpackChunkName: "board" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "user-settings" */ './views/BoardView.vue')
   },
   {
     name: 'logout',
     path: '/user/:username/logout',
-    component: () => import(/* webpackChunkName: "board" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "logout" */ './views/BoardView.vue')
   },
 
 ]
