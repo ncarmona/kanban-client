@@ -1,11 +1,16 @@
 <template>
   <HomeLayout>
-    <Header :headerNumber="1" text="Home" />
-    <ul>
-      <li v-for="board in boards" :key="board">
-        <router-link class="font-semibold" :to="boardLink(board)">{{board}}</router-link>
-      </li>
-    </ul>
+    <div class="ml-4">
+      <Header :headerNumber="1" text="Home" />
+      <div class="mt-5">
+        <p>Subscribed boards:</p>
+        <ul class="ml-3 mt-2">
+          <li v-for="board in boards" :key="board">
+            <router-link class="font-semibold" :to="boardLink(board)">{{board}}</router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
   </HomeLayout>
 </template>
 
