@@ -4,9 +4,14 @@ import { RouteRecordRaw } from 'vue-router'
 
 export const routes: RouteRecordRaw[] = [
   {
+    name: 'home',
+    path: '/',
+    component: () => import(/* webpackChunkName: "board" */ './views/HomeView.vue')
+  },
+  {
     name: 'board',
     path: '/board/:board',
-    component: () => import(/* webpackChunkName: "board" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "home" */ './views/BoardView.vue')
   },
   {
     name: 'create-task',
