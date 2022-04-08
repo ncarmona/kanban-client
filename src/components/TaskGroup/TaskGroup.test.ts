@@ -6,32 +6,7 @@ import { ITask } from 'domain/interfaces/ITask'
 
 describe('Task group test', () => {
   let wrapper:VueWrapper
-  const backlog = {
-      selected: [],
-      unselected: tasks
-  }
-  const textHeader: string = 'Backlog'
-  const field: string = 'unselected'
-
-  beforeEach(() => {
-    wrapper = mount(TaskGroupComponent, {
-      props: {backlog, textHeader, field}
-    })
-  })
-
-  it('Header test rendered', () => {
-    const header: string = wrapper.findComponent(HeaderComponent).text()
-    expect(header).toStrictEqual(textHeader)
-  })
-
-  it('Unselected task are rendered', () => {
-    const expectedNumOfTasks:number = backlog.unselected.length
-    const numOfTasks:number = wrapper.findAllComponents(TaskComponent).length
-    expect(numOfTasks).toBe(expectedNumOfTasks)
-  })
-})
-
-const tasks: ITask[] = [
+  const tasks: ITask[] = [
   {
     author: 'Noel',
     column: 'todo',
@@ -65,4 +40,28 @@ const tasks: ITask[] = [
     tags: [],
     title: 'task test3'
   },
-]
+  ]
+  const backlog = {
+      selected: [],
+      unselected: tasks
+  }
+  const textHeader: string = 'Backlog'
+  const field: string = 'unselected'
+
+  beforeEach(() => {
+    wrapper = mount(TaskGroupComponent, {
+      props: {backlog, textHeader, field}
+    })
+  })
+
+  it('Header test rendered', () => {
+    const header: string = wrapper.findComponent(HeaderComponent).text()
+    expect(header).toStrictEqual(textHeader)
+  })
+
+  it('Unselected task are rendered', () => {
+    const expectedNumOfTasks:number = backlog.unselected.length
+    const numOfTasks:number = wrapper.findAllComponents(TaskComponent).length
+    expect(numOfTasks).toBe(expectedNumOfTasks)
+  })
+})
