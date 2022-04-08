@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderComponent class="mb-3 text-center" :headerNumber="3" :text="textHeader"/>
-    <TaskComponent @click="swapTaskBacklog(task)" v-for="task in backlog[field]" :key="task.id" :task="task" />
+    <TaskComponent class="cursor-pointer" @click="swapTaskBacklog(task)" v-for="task in backlog[field]" :key="task.id" :task="task" />
   </div>
 </template>
 
