@@ -1,4 +1,6 @@
 import { IBoard } from 'domain/interfaces/IBoard';
+import { IBoardColumn } from 'domain/interfaces/IBoardColumn';
+import { ITask } from 'domain/interfaces/ITask';
 
 export default {
   state: [
@@ -186,8 +188,30 @@ export default {
       ]
     }
   ],
-  mutations: {},
-  actions: {},
+  mutations: {
+    moveTaskToBoard ({ commit }:any, boardName:string, tasks:ITask[]) {
+      commit('moveTaskToBoard', boardName, tasks)
+    }
+  },
+  actions: {
+    moveTaskToBoard: (state: any, payload:any) => {
+      // get board initial column
+      const { boardName, tasks } = payload
+      const board:IBoard = state.state.find((c:IBoard) => c.name === boardName)
+      
+      // Task copy
+      let tasksIDs: (string | undefined)[] = tasks.map((t: ITask) => t.id)
+
+      // Find default board column
+      const defaultColumn:IBoardColumn | undefined = board.columns.find((c: IBoardColumn) => c.default)
+      
+      // Remove task from backlog
+      board.backlog = board.backlog.filter((t: ITask) => !tasksIDs?.includes(t.id!))
+      
+      // Add task to initial column
+      defaultColumn?.tasks.push(...tasks)
+    }
+  },
   getters: {
     getBoard: (state: IBoard[]) => (name: string) => state.find((b:IBoard) => b.name === name)
   }
