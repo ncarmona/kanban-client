@@ -4,13 +4,15 @@
       <p class="flex justify-center w-full mb-7">
         Click a task in order to move it to sprint or backlog
       </p>
-      <div class="flex md:flex-row flex-col">
+      <div class="flex md:flex-row flex-col grow">
         <TaskGroupComponent class="w-11/12 md:w-6/12 ml-4 mr-4 mb-10" :backlog="backlog" textHeader="Backlog" field="unselected" />
         <TaskGroupComponent class="w-11/12 md:w-6/12 ml-4 mr-4" :backlog="backlog" textHeader="Sprint" field="selected" />
       </div>
-      <div class="flex flex-col align-items-center w-full mt-7">
-        <p class="mb-3">Selected tasks will be added to the board.</p>
-        <ButtonComponent v-on:click="sendBacklogTaskToBoard" class="w-11/12" :button="buttonData" />
+      <div class="flex flex-col mt-7">
+        <p class="mb-3 flex justify-center">Selected tasks will be added to the board.</p>
+        <div class="flex justify-center">
+          <ButtonComponent v-on:click="sendBacklogTaskToBoard" class="w-40" :button="buttonData" />
+        </div>
       </div>
     </div>
   </BoardLayout>
