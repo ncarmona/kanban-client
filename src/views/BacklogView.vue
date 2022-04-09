@@ -5,7 +5,7 @@
         Click a task in order to move it to sprint or backlog
       </p>
       <div class="flex md:flex-row flex-col grow">
-        <TaskGroupComponent class="w-11/12 md:w-6/12 ml-4 mr-4 mb-10" :backlog="backlog" textHeader="Backlog" field="unselected" />
+        <TaskGroupComponent class="w-11/12 md:w-6/12 ml-4 mr-4 mb-10 md:mb-auto" :backlog="backlog" textHeader="Backlog" field="unselected" />
         <TaskGroupComponent class="w-11/12 md:w-6/12 ml-4 mr-4" :backlog="backlog" textHeader="Sprint" field="selected" />
       </div>
       <div class="flex flex-col mt-7">
@@ -59,9 +59,10 @@ export default defineComponent({
       selected: [],
       unselected: [...getCurrentBoard().backlog]
     })
-    const buttonData: IButton = {
+    const buttonData: Ref<IButton> = ref({
       label: "Add to board"
-    } 
+    })
+ 
     return { backlog, buttonData, sendBacklogTaskToBoard }
   }
 })
