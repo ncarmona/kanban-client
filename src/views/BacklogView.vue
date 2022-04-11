@@ -36,12 +36,26 @@ export default defineComponent({
     const router = useRouter()
     const board: string = route.params.board as string
 
+    const buttonData: Ref<IButton> = ref({
+      label: "Add to board",
+      disabled: false,
+      processing: {
+        enabled: false,
+        processingText: 'Moving to board...'
+      }
+    })
+
     const getBoardName = (board:string):string => board.replace('-', ' ')
     const getCurrentBoard = (): IBoard => store.getters.getBoard(getBoardName(board))
     const sendBacklogTaskToBoard = () => {
-      vuexSendBacklogTaskToBard()
-      redirectToBoard()
+      const { enabled } = buttonData.value.processing!
+      if ( !enabled ) {
+        setProcessingButton(true)
+        vuexSendBacklogTaskToBard()
+        redirectToBoard()
+      }
     }
+    const setProcessingButton = (enabled: boolean) => buttonData.value.processing!.enabled = enabled
     const vuexSendBacklogTaskToBard = () => {
       const payload = {
         boardName: getBoardName(board),
@@ -58,9 +72,6 @@ export default defineComponent({
     const backlog: Ref = ref({
       selected: [],
       unselected: [...getCurrentBoard().backlog]
-    })
-    const buttonData: Ref<IButton> = ref({
-      label: "Add to board"
     })
  
     return { backlog, buttonData, sendBacklogTaskToBoard }
