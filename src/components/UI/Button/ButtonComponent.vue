@@ -24,7 +24,6 @@ export default defineComponent({
     const disabled:Ref<boolean> = ref(props.button.disabled ?? false)
     const autofocus:Ref<boolean> = ref(props.button.autofocus ?? false)
     const name:Ref<string> = ref(props.button.name ?? '')
-    const value:Ref<string> = ref(props.button.value ?? '')
 
     const visibleLabel:Ref = ref(label)
     const btn:Ref = ref(null)
@@ -49,7 +48,7 @@ export default defineComponent({
       enabled ? enableProcessing() : disableProcessing()
     })
 
-    return { type, autofocus, disabled, name, value, visibleLabel, btn, btnSpan }
+    return { type, autofocus, disabled, name, visibleLabel, btn, btnSpan }
   },
 })
 </script>
