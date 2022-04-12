@@ -4,7 +4,7 @@
       <p class="flex justify-center w-full mb-7">
         Click a task in order to move it to sprint or backlog
       </p>
-      <div class="flex md:flex-row flex-col grow">
+      <div class="flex md:flex-row flex-col grow" @click="toggleToBardButton">
         <TaskGroupComponent class="w-11/12 md:w-6/12 ml-4 mr-4 mb-10 md:mb-auto" :backlog="backlog" textHeader="Backlog" field="unselected" />
         <TaskGroupComponent class="w-11/12 md:w-6/12 ml-4 mr-4" :backlog="backlog" textHeader="Sprint" field="selected" />
       </div>
@@ -38,7 +38,7 @@ export default defineComponent({
 
     const buttonData: Ref<IButton> = ref({
       label: "Add to board",
-      disabled: false,
+      disabled: true,
       processing: {
         enabled: false,
         processingText: 'Moving to board...'
@@ -73,8 +73,10 @@ export default defineComponent({
       selected: [],
       unselected: [...getCurrentBoard().backlog]
     })
- 
-    return { backlog, buttonData, sendBacklogTaskToBoard }
+    const toggleToBardButton = () => {
+      buttonData.value.disabled = backlog.value.selected.length === 0
+    }
+    return { backlog, buttonData, sendBacklogTaskToBoard, toggleToBardButton}
   }
 })
 </script>
