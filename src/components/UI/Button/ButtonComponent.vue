@@ -11,6 +11,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref, Ref, watch } from 'vue'
 import { IButton } from './interfaces/IButton'
+import { ButtonType } from './interfaces/IButtonType'
 export default defineComponent({
   props: {
     button: {
@@ -19,11 +20,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const type = computed(() => props.button.type ?? 'button')
     const label:string = props.button.label
-    const disabled:Ref<boolean> = ref(props.button.disabled ?? false)
-    const autofocus:Ref<boolean> = ref(props.button.autofocus ?? false)
-    const name:Ref<string> = ref(props.button.name ?? '')
 
     const visibleLabel:Ref = ref(label)
     const btn:Ref = ref(null)
@@ -48,7 +45,12 @@ export default defineComponent({
       enabled ? enableProcessing() : disableProcessing()
     })
 
-    return { type, autofocus, disabled, name, visibleLabel, btn, btnSpan }
+    const autofocus = computed(() => props.button.autofocus ?? false)
+    const disabled = computed(() => props.button.disabled ?? false)
+    const name = computed(() => props.button.name ?? '')
+    const type = computed(() => props.button.type ?? ButtonType.BUTTON)
+
+    return { autofocus, disabled, name, type, btn, btnSpan, visibleLabel }
   },
 })
 </script>
