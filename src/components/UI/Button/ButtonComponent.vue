@@ -1,5 +1,5 @@
 <template>
-  <button ref="btn" class="bg-violet-700 hover:bg-violet-500 text-white rounded p-2 disabled:cursor-not-allowed"
+  <button ref="btn" class="bg-violet-700 hover:bg-violet-500 text-white rounded p-2 disabled:cursor-not-allowed disabled:bg-gray-400"
           :type="type"
           :name="name"
           :autofocus="autofocus"
