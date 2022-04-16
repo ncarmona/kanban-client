@@ -10,6 +10,6 @@ describe('NoRegosteredText component', () => {
   it('No registered text rendered', () => {
     const wrapperText:string = wrapper.find('span').text()
 
-    expect(wrapperText).toStrictEqual(wrapperText)
+    expect(wrapperText).toStrictEqual(text)
   })
 })
