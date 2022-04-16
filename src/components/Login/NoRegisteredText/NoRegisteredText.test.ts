@@ -2,7 +2,7 @@ import { mount, VueWrapper } from '@vue/test-utils'
 import NoRegisteredTextComponent from './NoRegisteredTextComponent.vue'
 
 describe('NoRegosteredText component', () => {
-  let wrapper:VueWrapper = mount(NoRegisteredTextComponent)
+  let wrapper:VueWrapper
   const text:string = 'Have not registered?'
   
   beforeEach(() => wrapper = mount(NoRegisteredTextComponent))
