@@ -11,7 +11,7 @@ import { RouteLocationRaw } from 'vue-router'
 
 export default defineComponent({
   setup() {
-    const signupRoute:RouteLocationRaw = { name: 'login' }
+    const signupRoute:RouteLocationRaw = { name: 'register' }
 
     return { signupRoute }
   }
