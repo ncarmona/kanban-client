@@ -43,6 +43,11 @@ export const routes: RouteRecordRaw[] = [
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ './views/LoginView.vue')
   },
+  {
+    name: 'register',
+    path: '/register',
+    component: () => import(/* webpackChunkName: "register" */ './views/RegisterView.vue')
+  },
 
 ]
 
