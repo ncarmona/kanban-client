@@ -1,0 +1,82 @@
+<template>
+  <div>
+    <div class="mb-7">
+      <InputTextComponent class="mb-5" :input="inputEmail"/>
+      <InputTextComponent :input="inputPassword"/>
+    </div>
+    <ButtonComponent class="w-full" @click="login" :button="loginButton" />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, Ref, watch } from 'vue'
+import { KeyIcon, UserIcon } from '@heroicons/vue/outline'
+import { IInputText } from '../../UI/InputText/interfaces/IInputText'
+import { InputType } from '../../UI/InputText/interfaces/InputType'
+import InputTextComponent from '../../UI/InputText/InputTextComponent.vue'
+import ButtonComponent from '../../UI/Button/ButtonComponent.vue'
+import { IButton } from 'components/UI/Button/interfaces/IButton'
+
+export default defineComponent({
+  components: { InputTextComponent, ButtonComponent },
+  props: {
+    success: {
+      required: true,
+      type: Function
+    },
+    fail: {
+      required: true,
+      type: Function
+    }
+  },
+  setup(props) {
+    const inputEmail: Ref<IInputText> = ref({
+      name: 'Email',
+      inputValue: '',
+      type: InputType.EMAIL,
+      autofocus: true,
+      icon: UserIcon
+    })
+    const inputPassword: Ref<IInputText> = ref({
+      name: 'Password',
+      inputValue: '',
+      type: InputType.PASSWORD,
+      icon: KeyIcon
+    })
+    const loginButton: Ref<IButton> = ref({
+      label: 'login',
+      processing: {
+        enabled: false,
+        processingText: 'Validating ...'
+      },
+      disabled: true
+    })
+    const login = () => {
+      validate()
+    }
+    const validate = () => {
+      loginButton.value.processing!.enabled = true
+      props.success()
+    }
+
+    const someFieldEmpty = (email:string, password:string): boolean => {
+      const email2 = email.trim().length !== 0
+      const password2 = password.trim().length !== 0
+
+      return email2 && password2
+    }
+    const validateEmail = (email:string): boolean => {
+      const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return reg.test(email)
+    }
+    watch([inputEmail, inputPassword], (v) => {
+      const email = v[0].inputValue
+      const password = v[1].inputValue
+
+      loginButton.value.disabled = !someFieldEmpty(email, password) || !validateEmail(email)
+    }, {deep: true})
+
+    return { inputEmail, inputPassword, login, loginButton }
+  }
+})
+</script>
