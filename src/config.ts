@@ -26,7 +26,7 @@ export const routes: RouteRecordRaw[] = [
   {
     name: 'board-configuration',
     path: '/board/:board/config',
-    component: () => import(/* webpackChunkName: "board-configuration" */ './views/BoardView.vue')
+    component: () => import(/* webpackChunkName: "board-configuration" */ './views/BoardConfigurationView.vue')
   },
   {
     name: 'user-settings',
