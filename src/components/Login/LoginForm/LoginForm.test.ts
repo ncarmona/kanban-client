@@ -33,7 +33,10 @@ describe('loginFormComponent', () => {
   })
   it('Once form is filled login button must be enabled', async () => {
     const inputFieldsComponents = loginFormWrapper.findAllComponents(InputTextComponent)
-    await inputFieldsComponents.forEach(async (input:VueWrapper) => await input.find('input').setValue('fieldtext'))
+    const expectedFieldValues: string[] = ['mail@mail.com', 'password']
+    await inputFieldsComponents.forEach(async (input:VueWrapper, index:number) => {
+      await input.find('input').setValue(expectedFieldValues[index])
+    })
     const loginButton = loginFormWrapper.findComponent(ButtonComponent)
     const loginButtonDisabled = loginButton.find('button').element.disabled
 
@@ -42,7 +45,10 @@ describe('loginFormComponent', () => {
 
   it('Once form is fullfilled and user remove all the text in any input it will disable login button', async () => {
     const inputFieldsComponents = loginFormWrapper.findAllComponents(InputTextComponent)
-    await inputFieldsComponents.forEach(async (input:VueWrapper) => await input.find('input').setValue('fieldtext'))
+    const expectedFieldValues: string[] = ['mail@mail.com', 'password']
+    await inputFieldsComponents.forEach(async (input:VueWrapper, index:number) => {
+      await input.find('input').setValue(expectedFieldValues[index])
+    })
     const loginButton = loginFormWrapper.findComponent(ButtonComponent)
     await inputFieldsComponents[0].find('input').setValue('')
     const loginButtonDisabled = loginButton.find('button').element.disabled
