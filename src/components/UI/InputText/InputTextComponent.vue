@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <label :for="name" class="mb-2 font-bold">{{name}}</label>
+    <label :for="attributeName" class="mb-2 font-bold">{{name}}</label>
     <div ref="borderInputRef" class="flex place-items-center h-10 border rounded">
       <Component ref="iconInputRef" v-if="assignedIcon" :is="icon" class="h-6 ml-2 text-slate-400"/>
       <input
@@ -10,8 +10,8 @@
         :autofocus="autofocus"
         :disabled="disabled"
         :type="type"
-        :id="name"
-        :name="name"
+        :id="attributeName"
+        :name="attributeName"
         :pattern="pattern"
         :max="max"
         :maxlength="maxlength"
@@ -67,7 +67,7 @@ export default defineComponent({
     const isPasswordType = computed(() => firstType === InputType.PASSWORD)
     const togglePasswordTypeIcon = computed(() => props.input.type === InputType.PASSWORD ? EyeIcon : EyeOffIcon)
     const assignedIcon = computed(() => !!props.input.icon)
-
+    const attributeName = computed(() => props.input.name.replace(' ', '-'))
     const borderInputRef:Ref = ref()
     const iconInputRef:Ref = ref()
 
@@ -110,7 +110,8 @@ export default defineComponent({
       props,
       borderInputRef,
       setInputColors,
-      iconInputRef
+      iconInputRef,
+      attributeName
     }
   },
 })
