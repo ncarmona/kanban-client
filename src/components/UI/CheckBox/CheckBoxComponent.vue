@@ -38,7 +38,7 @@ export default defineComponent({
     const componentCursor = computed(() => {
       const { enabled } = props.data
 
-      const disabledCSS: string = 'flex h-5 cursor-not-allowed text-gray-500'
+      const disabledCSS: string = 'flex h-5 cursor-not-allowed text-gray-500 place-items-center'
       const enabledCSS: string = 'flex h-5 cursor-pointer'
 
       return enabled ?? true ? enabledCSS : disabledCSS
