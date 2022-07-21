@@ -191,6 +191,9 @@ export default {
   mutations: {
     moveTaskToBoard ({ commit }:any, boardName:string, tasks:ITask[]) {
       commit('moveTaskToBoard', boardName, tasks)
+    },
+    deleteBoard ({ commit }:any, boardID:string) {
+      commit('deleteBoard', boardID)
     }
   },
   actions: {
@@ -210,6 +213,11 @@ export default {
       
       // Add task to initial column
       defaultColumn?.tasks.push(...tasks)
+    },
+    deleteBoard: (state: any, payload:any) => {
+      const { boardID } = payload
+
+      state.state = state.state.filter((b:IBoard) => b.id !== boardID)
     }
   },
   getters: {
