@@ -18,6 +18,8 @@ import { IInputText } from 'components/UI/InputText/interfaces/IInputText'
 import { InputType } from '../../UI/InputText/interfaces/InputType'
 import { defineComponent, ref, Ref, watch } from 'vue'
 import { KeyIcon, MailIcon } from '@heroicons/vue/outline'
+import { AuthRequests } from '../../../requests/auth'
+import { IAuth } from 'domain/interfaces/IAuth'
 
 export default defineComponent({
   props: {
@@ -58,13 +60,26 @@ export default defineComponent({
         processingText: 'Creating account...'
       }
     })
+    const signupPayload = (): IAuth => {
+      const { inputValue: email } = emailInput.value
+      const { inputValue: password } = passwordInput.value
 
+      return { email, password }
+    }
+    const signup = () => {
+      const authRequests = new AuthRequests()
+      authRequests.signup(signupPayload())
+        .then(() => console.log("Ok"))
+        .catch(() => console.log("error"))
+        .finally(() => resetButtonLabel())
+    }
     const register = () => {
       changeButtonToProcessing()
+      signup()
     }
 
     const changeButtonToProcessing = () => registerButton.value.processing!.enabled = true
-
+    const resetButtonLabel = () => registerButton.value.processing!.enabled = false
     const someFieldEmpty = (fields: string[]): boolean => {
       return fields.every((f: string) => f.trim().length !== 0)
     }
