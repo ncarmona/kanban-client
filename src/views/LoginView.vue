@@ -15,12 +15,14 @@ import NoRegisteredTextComponent from '../components/Login/NoRegisteredText/NoRe
 import HeaderComponent from '../components/UI/Header/HeaderComponent.vue'
 import LoginFormComponent from '../components/Login/LoginForm/LoginFormComponent.vue'
 import AuthLogo from '../assets/kanban_auto.svg'
+import { Router, useRouter } from 'vue-router'
 
 export default defineComponent({
   components: { AuthLayout, HeaderComponent, LoginFormComponent, NoRegisteredTextComponent },
   setup() {
-    const loginSuccess = () => console.log('success')
-    const loginFail = () => console.log('fail')
+    const router:Router = useRouter()
+    const loginSuccess = () => router.push({ name: "home" })
+    const loginFail = () => { return }
 
     return { loginSuccess, loginFail, AuthLogo }
   }
