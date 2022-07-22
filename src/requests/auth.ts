@@ -8,4 +8,7 @@ export class AuthRequests extends Request {
   signup(credentials: IAuth):Promise<any> {
     return this.connection!.post("/signup", credentials)
   }
+  signin(credentials: IAuth): Promise<any> {
+    return this.connection!.post("/signin", credentials)
+  }
 }
