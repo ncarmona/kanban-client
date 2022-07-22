@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="mb-7">
-      <InputTextComponent class="mb-5" :input="inputEmail"/>
-      <InputTextComponent :input="inputPassword"/>
+    <div class="mb-2">
+      <InputTextComponent class="mb-5" :input="inputEmail" @click="clearErrorMessages()"/>
+      <InputTextComponent :input="inputPassword" @click="clearErrorMessages()"/>
     </div>
+    <FormErrorMessageComponent class="mb-2" :message="loginErrorMessage"/>
     <ButtonComponent class="w-full" @click="login" :button="loginButton" />
   </div>
 </template>
@@ -16,9 +17,13 @@ import { InputType } from '../../UI/InputText/interfaces/InputType'
 import InputTextComponent from '../../UI/InputText/InputTextComponent.vue'
 import ButtonComponent from '../../UI/Button/ButtonComponent.vue'
 import { IButton } from 'components/UI/Button/interfaces/IButton'
+import { AuthRequests } from '../../../requests/auth'
+import { IAuth } from 'domain/interfaces/IAuth'
+import FormErrorMessageComponent from '../../UI/FormErrorMessage/FormErrorMessageComponent.vue'
+import { AxiosError } from 'axios'
 
 export default defineComponent({
-  components: { InputTextComponent, ButtonComponent },
+  components: { InputTextComponent, ButtonComponent, FormErrorMessageComponent },
   props: {
     success: {
       required: true,
@@ -51,14 +56,35 @@ export default defineComponent({
       },
       disabled: true
     })
-    const login = () => {
-      validate()
+    const loginErrorMessage: Ref<string> = ref("")
+    const signinPayload = async ():Promise<IAuth> => {
+      const { inputValue: email} = inputEmail.value
+      const { inputValue: password} = inputPassword.value
+
+      return { email, password }
     }
-    const validate = () => {
+    const login = async (): Promise<void> => {
+      const signin = new AuthRequests()
       loginButton.value.processing!.enabled = true
-      props.success()
+      signin.signin(await signinPayload())
+        .then(() => props.success())
+        .catch((error: AxiosError) => {
+          props.fail()
+          loginErrorMessage.value = "Wrong credentials. Try again."
+        })
+        .finally(() => {
+          loginButton.value.processing!.enabled = false
+          clearForm()
+        })
     }
 
+    const clearForm = () => {
+      inputEmail.value.inputValue = ""
+      inputPassword.value.inputValue = ""
+    }
+    const clearErrorMessages = () => {
+      loginErrorMessage.value = ""
+    }
     const someFieldEmpty = (email:string, password:string): boolean => {
       const email2 = email.trim().length !== 0
       const password2 = password.trim().length !== 0
@@ -76,7 +102,7 @@ export default defineComponent({
       loginButton.value.disabled = !someFieldEmpty(email, password) || !validateEmail(email)
     }, {deep: true})
 
-    return { inputEmail, inputPassword, login, loginButton }
+    return { inputEmail, inputPassword, login, loginButton, loginErrorMessage, clearErrorMessages }
   }
 })
 </script>
