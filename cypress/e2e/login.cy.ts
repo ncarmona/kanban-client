@@ -67,6 +67,8 @@ describe('Login form', () => {
       method: "PUT",
     })
   })
+  it.skip("Login with disabled account")
+  it.skip("Login with deleted account")
 })
 describe('View title', () => {
   beforeEach(() => {
