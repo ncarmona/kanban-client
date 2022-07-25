@@ -87,7 +87,7 @@ export default defineComponent({
       const { TEXT, PASSWORD } = InputType
       props.input.type = type === PASSWORD ? TEXT : PASSWORD
     }
-    const dataCy = computed(() => "UI-input-text-" + props.input.name.toLowerCase())
+    const dataCy = computed(() => "UI-input-text-" + props.input.name.toLowerCase().replace(" ", "-"))
     return {
       name,
       placeholder,

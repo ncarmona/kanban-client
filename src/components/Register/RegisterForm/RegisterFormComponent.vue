@@ -55,6 +55,7 @@ export default defineComponent({
     const registerButton: Ref<IButton> = ref({
       label: 'Register',
       disabled: true,
+      name: 'register',
       processing: {
         enabled: false,
         processingText: 'Creating account...'
@@ -69,8 +70,8 @@ export default defineComponent({
     const signup = () => {
       const authRequests = new AuthRequests()
       authRequests.signup(signupPayload())
-        .then(() => console.log("Ok"))
-        .catch(() => console.log("error"))
+        .then(() => props.success())
+        .catch(() => props.fail())
         .finally(() => resetButtonLabel())
     }
     const register = () => {
