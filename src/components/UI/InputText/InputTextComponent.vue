@@ -22,7 +22,8 @@
         :placeholder="placeholder"
         @focus="setInputColors"
         @blur="setInputColors"
-        v-model="props.input.inputValue" />
+        v-model="props.input.inputValue"
+        :data-cy="dataCy"/>
       <Component
         :is="togglePasswordTypeIcon"
         @click="toggleInputType"
@@ -86,6 +87,7 @@ export default defineComponent({
       const { TEXT, PASSWORD } = InputType
       props.input.type = type === PASSWORD ? TEXT : PASSWORD
     }
+    const dataCy = computed(() => "UI-input-text-" + props.input.name.toLowerCase())
     return {
       name,
       placeholder,
@@ -111,7 +113,8 @@ export default defineComponent({
       borderInputRef,
       setInputColors,
       iconInputRef,
-      attributeName
+      attributeName,
+      dataCy,
     }
   },
 })
