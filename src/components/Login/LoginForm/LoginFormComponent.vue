@@ -21,7 +21,7 @@ import { AuthRequests } from '../../../requests/auth'
 import { IAuth } from 'domain/interfaces/IAuth'
 import FormErrorMessageComponent from '../../UI/FormErrorMessage/FormErrorMessageComponent.vue'
 import { AxiosError } from 'axios'
-
+import { sha512_256 } from "js-sha512"
 export default defineComponent({
   components: { InputTextComponent, ButtonComponent, FormErrorMessageComponent },
   props: {
@@ -60,8 +60,8 @@ export default defineComponent({
     const loginErrorMessage: Ref<string> = ref("")
     const signinPayload = async ():Promise<IAuth> => {
       const { inputValue: email} = inputEmail.value
-      const { inputValue: password} = inputPassword.value
-
+      let { inputValue: password} = inputPassword.value
+      password = sha512_256.create().update(password).hex()
       return { email, password }
     }
     const login = async (): Promise<void> => {
