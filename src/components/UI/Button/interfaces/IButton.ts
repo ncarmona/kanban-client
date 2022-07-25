@@ -4,7 +4,7 @@ import { IProcessing } from './IProcessing'
 export interface IButton {
   autofocus?: boolean
   disabled?: boolean
-  name?: string
+  name: string
   type?: ButtonType,
   processing?: IProcessing
   label: string

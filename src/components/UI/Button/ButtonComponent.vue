@@ -3,7 +3,8 @@
           :type="type"
           :name="name"
           :autofocus="autofocus"
-          :disabled="disabled">
+          :disabled="disabled"
+          :data-cy="dataCy">
     <span ref="btnSpan">{{visibleLabel}}</span>
   </button>
 </template>
@@ -49,8 +50,8 @@ export default defineComponent({
     const disabled = computed(() => props.button.disabled ?? false)
     const name = computed(() => props.button.name ?? '')
     const type = computed(() => props.button.type ?? ButtonType.BUTTON)
-
-    return { autofocus, disabled, name, type, btn, btnSpan, visibleLabel }
+    const dataCy = computed(() => "UI-button-" + props.button.name)
+    return { autofocus, disabled, name, type, btn, btnSpan, visibleLabel, dataCy }
   },
 })
 </script>
