@@ -4,7 +4,7 @@
       <InputTextComponent class="mb-5" :input="inputEmail" @click="clearErrorMessages()"/>
       <InputTextComponent :input="inputPassword" @click="clearErrorMessages()"/>
     </div>
-    <FormErrorMessageComponent class="mb-2" :message="loginErrorMessage"/>
+    <FormErrorMessageComponent class="mb-2" :message="loginErrorMessage" name="login"/>
     <ButtonComponent class="w-full" @click="login" :button="loginButton" />
   </div>
 </template>
@@ -54,6 +54,7 @@ export default defineComponent({
         enabled: false,
         processingText: 'Validating ...'
       },
+      name: 'login',
       disabled: true
     })
     const loginErrorMessage: Ref<string> = ref("")
