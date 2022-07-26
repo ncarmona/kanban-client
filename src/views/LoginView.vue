@@ -2,8 +2,10 @@
   <AuthLayout>
     <NoRegisteredTextComponent data-cy="not-registed-text" class="flex justify-end"/>
       <div class="flex flex-col place-items-center w-full h-screen mt-10">
-        <HeaderComponent class="mb-8" data-cy="view-title" :headerNumber="1" text="login" />
-        <LoginFormComponent class="w-full md:w-6/12" :success="loginSuccess" :fail="loginFail"/>
+        <div class="w-full md:w-8/12">
+          <HeaderComponent class="mb-8" data-cy="view-title" :headerNumber="1" text="login" />
+          <LoginFormComponent class="w-full" :success="loginSuccess" :fail="loginFail"/>
+        </div>
       </div>
   </AuthLayout>
 </template>
