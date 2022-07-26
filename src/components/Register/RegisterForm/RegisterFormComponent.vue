@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="mb-7">
+    <div class="mb-2">
       <InputTextComponent class="mb-5" :input="emailInput" />
       <InputTextComponent class="mb-5" :input="passwordInput" />
       <InputTextComponent class="mb-5" :input="password2Input" />
     </div>
+    <FormErrorMessageComponent class="mb-2" :message="errorMessage" name="register" />
     <ButtonComponent class="w-full" @click="register" :button="registerButton" />
   </div>
 
@@ -20,6 +21,9 @@ import { defineComponent, ref, Ref, watch } from 'vue'
 import { KeyIcon, MailIcon } from '@heroicons/vue/outline'
 import { AuthRequests } from '../../../requests/auth'
 import { IAuth } from 'domain/interfaces/IAuth'
+import FormErrorMessageComponent from '../../UI/FormErrorMessage/FormErrorMessageComponent.vue'
+import { AxiosError } from 'axios'
+import { IResponse } from '../../../core/interfaces/IResponse'
 
 export default defineComponent({
   props: {
@@ -32,7 +36,7 @@ export default defineComponent({
       type: Function
     }
   },
-  components: { InputTextComponent, ButtonComponent },
+  components: { InputTextComponent, ButtonComponent, FormErrorMessageComponent },
   setup(props) {
     const emailInput: Ref<IInputText> = ref({
       inputValue: '',
@@ -61,24 +65,46 @@ export default defineComponent({
         processingText: 'Creating account...'
       }
     })
+    const errorMessage: Ref<string> = ref("")
+
     const signupPayload = (): IAuth => {
       const { inputValue: email } = emailInput.value
       const { inputValue: password } = passwordInput.value
 
       return { email, password }
     }
+
     const signup = () => {
       const authRequests = new AuthRequests()
       authRequests.signup(signupPayload())
-        .then(() => props.success())
-        .catch(() => props.fail())
+        .then(() => props.success!())
+        .catch((error: AxiosError) => {
+          const { status_code } = error.response?.data as IResponse
+          errorMessage.value = errorCode(status_code)
+        })
         .finally(() => resetButtonLabel())
     }
+
     const register = () => {
       changeButtonToProcessing()
       signup()
     }
 
+    const errorCode = (code: number) => {
+      let text: Function
+
+      switch (code) {
+        case 500:
+          text = () => 'Email already exists.'
+          break;
+      
+        default:
+          text = () => 'Unexpected error.'
+          break;
+      }
+
+      return text()
+    }
     const changeButtonToProcessing = () => registerButton.value.processing!.enabled = true
     const resetButtonLabel = () => registerButton.value.processing!.enabled = false
     const someFieldEmpty = (fields: string[]): boolean => {
@@ -104,7 +130,7 @@ export default defineComponent({
 
     }, { deep: true })
 
-    return { emailInput, passwordInput, password2Input, registerButton, register } 
+    return { emailInput, passwordInput, password2Input, registerButton, register, errorMessage } 
   }
 })
 </script>
