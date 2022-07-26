@@ -20,9 +20,11 @@ import { IButton } from 'components/UI/Button/interfaces/IButton'
 import { AuthRequests } from '../../../requests/auth'
 import { IAuth } from 'domain/interfaces/IAuth'
 import FormErrorMessageComponent from '../../UI/FormErrorMessage/FormErrorMessageComponent.vue'
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 import { sha512_256 } from "js-sha512"
 import { IResponse } from '../../../core/interfaces/IResponse'
+import { IProfile } from '../../../domain/interfaces/IProfile'
+
 export default defineComponent({
   components: { InputTextComponent, ButtonComponent, FormErrorMessageComponent },
   props: {
@@ -63,24 +65,32 @@ export default defineComponent({
       const { inputValue: email} = inputEmail.value
       let { inputValue: password} = inputPassword.value
       password = sha512_256.create().update(password).hex()
+
       return { email, password }
     }
     const login = async (): Promise<void> => {
       const signin = new AuthRequests()
       loginButton.value.processing!.enabled = true
+
       signin.signin(await signinPayload())
-        .then(() => props.success())
-        .catch((error: AxiosError) => {
-          const { status_code } = error.response?.data as IResponse
-          loginErrorMessage.value = errorCode(status_code)
-          props.fail()
-        })
+        .then((res: AxiosResponse<IResponse>) => loginSuccess(res))
+        .catch((error: AxiosError) => loginError(error))
         .finally(() => {
           loginButton.value.processing!.enabled = false
           clearForm()
         })
     }
-
+    const loginSuccess = (res: AxiosResponse<IResponse>) => {
+      const userData = res.data.data as IProfile
+      console.log(userData)
+      props.success()
+    }
+    const loginError = (error: AxiosError) => {
+      console.log(error)
+      const { status_code } = error.response?.data as IResponse
+      loginErrorMessage.value = errorCode(status_code)
+      props.fail()
+    }
     const errorCode = (code: number) => {
       let text: Function
 
