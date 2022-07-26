@@ -2,9 +2,9 @@
   <AuthLayout>
     <AlreadyHaveAnAccountComponent v-if="pendingToRegister" class="flex justify-end"/>
       <div class="flex flex-col place-items-center w-full h-screen mt-10">
-        <div v-if="pendingToRegister">
+        <div v-if="pendingToRegister" class="w-full md:w-8/12">
           <HeaderComponent class="mb-8" :headerNumber="1" text="register" />
-          <RegisterFormComponent class="w-full md:w-6/12" :success="registerSuccess" :fail="registerFail"/>
+          <RegisterFormComponent class="w-full" :success="registerSuccess" :fail="registerFail"/>
         </div>
         <ConfirmationEmailSendedComponent v-else email="email@gmail.com" />
       </div>
@@ -25,7 +25,9 @@ export default defineComponent({
     const registerSuccess = () => {
       registerOk.value = true
     }
-    const registerFail = () => {}
+    const registerFail = () => {
+      return false
+    }
     const pendingToRegister = computed(() => !registerOk.value)
     return { registerSuccess, registerFail, pendingToRegister }
   }
