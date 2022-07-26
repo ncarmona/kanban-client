@@ -22,6 +22,7 @@ import { IAuth } from 'domain/interfaces/IAuth'
 import FormErrorMessageComponent from '../../UI/FormErrorMessage/FormErrorMessageComponent.vue'
 import { AxiosError } from 'axios'
 import { sha512_256 } from "js-sha512"
+import { IResponse } from '../../../core/interfaces/IResponse'
 export default defineComponent({
   components: { InputTextComponent, ButtonComponent, FormErrorMessageComponent },
   props: {
@@ -70,13 +71,30 @@ export default defineComponent({
       signin.signin(await signinPayload())
         .then(() => props.success())
         .catch((error: AxiosError) => {
+          const { status_code } = error.response?.data as IResponse
+          loginErrorMessage.value = errorCode(status_code)
           props.fail()
-          loginErrorMessage.value = "Wrong credentials. Try again."
         })
         .finally(() => {
           loginButton.value.processing!.enabled = false
           clearForm()
         })
+    }
+
+    const errorCode = (code: number) => {
+      let text: Function
+
+      switch (code) {
+        case 404:
+          text = () => 'Wrong credentials. Try again.'
+          break;
+      
+        default:
+          text = () => 'Unexpected error.'
+          break;
+      }
+
+      return text()
     }
 
     const clearForm = () => {
